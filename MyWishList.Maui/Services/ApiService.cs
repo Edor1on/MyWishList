@@ -36,6 +36,19 @@ namespace MyWishList.Maui.Services
         public async Task<bool> PostWishesAsync(Wish wish)
         {
             var response = await _httpClient.PostAsJsonAsync(BaseUrl, wish);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // Читаємо повідомлення про помилку від бекенду
+                var errorText = await response.Content.ReadAsStringAsync();
+
+                // Виводимо його у вікно Output у Visual Studio
+                System.Diagnostics.Debug.WriteLine($"================");
+                System.Diagnostics.Debug.WriteLine($"API ERROR: {response.StatusCode}");
+                System.Diagnostics.Debug.WriteLine($"DETAILS: {errorText}");
+                System.Diagnostics.Debug.WriteLine($"================");
+            }
+
             return response.IsSuccessStatusCode;
         }
 
