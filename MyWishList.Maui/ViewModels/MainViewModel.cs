@@ -24,14 +24,15 @@ namespace MyWishList.Maui.ViewModels
         }
 
         public ICommand LoadWishesCommand { get; }
-        public ICommand AddWishesCommand { get; }
+        public ICommand AddWishCommand { get; }
 
         public MainViewModel(ApiService apiService)
         {
             _apiService = apiService;
 
             LoadWishesCommand = new Command(async () => await LoadWishes());
-            AddWishesCommand = new Command(async () => await AddWishes());
+            // Було: AddWishesCommand = new Command(async () => await AddWishes());
+            AddWishCommand = new Command(async () => await AddWish());
 
             LoadWishesCommand.Execute(null);
         }
@@ -46,8 +47,7 @@ namespace MyWishList.Maui.ViewModels
             }
         }
 
-        [Obsolete]
-        private async Task AddWishes()
+        private async Task AddWish()
         {
             if (string.IsNullOrWhiteSpace(NewWishName))
             {
