@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MyWishList.Shared\MyWishList.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\" />
+  </ItemGroup>
+
 </Project>

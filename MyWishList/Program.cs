@@ -3,34 +3,20 @@ using MyWishList.API.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Додаємо контролери (це вже має бути у файлі)
+// 1. Додаємо підтримку контролерів
 builder.Services.AddControllers();
 
-// РЕЄСТРУЄМО НАШУ БАЗУ ДАНИХ (додай цей блок)
+// 2. Реєструємо нашу базу даних SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
+// 3. Базові налаштування безпеки
 app.UseHttpsRedirection();
-
-app.UseRouting();
-
 app.UseAuthorization();
 
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+// 4. НАЙГОЛОВНІШИЙ РЯДОК: Кажемо серверу слухати наші [Route] в контролерах
+app.MapControllers();
 
 app.Run();

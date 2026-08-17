@@ -1,6 +1,11 @@
-﻿using MyWishList.Shared.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MyWishList.Shared.Enums;
 
-namespace MyWishList.API.Domain.Entities
+namespace MyWishList.Shared.Models
 {
     public class Wish
     {

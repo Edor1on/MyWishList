@@ -1,0 +1,20 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@API_HostAddress = https://localhost:7248
+
+
+### Отримати всі бажання (Читання)
+GET {{API_HostAddress}}/api/wishes
+Accept: application/json
+
+
+### Створити нове бажання (Створення)
+POST {{API_HostAddress}}/api/wishes
+Content-Type: application/json
+
+
+{
+  "userId": 1,
+  "name": "Стати крутим .NET інженером!",
+  "description": "Закінчити мій перший full-stack додаток",
+  "status": 0
+}

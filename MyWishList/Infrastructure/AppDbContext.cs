@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyWishList.API.Domain.Entities;
+using MyWishList.Shared.Models;
 
 namespace MyWishList.API.Infrastructure
 {
