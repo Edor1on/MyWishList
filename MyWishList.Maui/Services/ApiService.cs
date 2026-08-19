@@ -12,30 +12,30 @@ namespace MyWishList.Maui.Services
     {
         private readonly HttpClient _httpClient;
 
-        private const string BaseUrl = "https://localhost:7248/api/wishes";
+        private const string BaseUrl = "https://localhost:7248/api/goals";
 
         public ApiService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<List<Wish>> GetWishesAsync()
+        public async Task<List<Goal>> GetGoalsAsync()
         {
             try
             {
-                var response = await _httpClient.GetFromJsonAsync<List<Wish>>(BaseUrl);
-                return response ?? new List<Wish>();
+                var response = await _httpClient.GetFromJsonAsync<List<Goal>>(BaseUrl);
+                return response ?? new List<Goal>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Send error: {ex}");
-                return new List<Wish>();
+                return new List<Goal>();
             }
         }
 
-        public async Task<bool> PostWishesAsync(Wish wish)
+        public async Task<bool> PostGoalAsync(Goal goal)
         {
-            var response = await _httpClient.PostAsJsonAsync(BaseUrl, wish);
+            var response = await _httpClient.PostAsJsonAsync(BaseUrl, goal);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -52,15 +52,15 @@ namespace MyWishList.Maui.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateWishAsync(Wish wish)
+        public async Task<bool> UpdateGoalAsync(Goal goal)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{wish.Id}", wish);
+            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{goal.Id}", goal);
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteWishesAsync(Wish wish)
+        public async Task<bool> DeleteGoalAsync(Goal goal)
         {
-            var response = await _httpClient.DeleteAsync($"{BaseUrl}/{wish.Id}");
+            var response = await _httpClient.DeleteAsync($"{BaseUrl}/{goal.Id}");
             return response.IsSuccessStatusCode;
         }
 

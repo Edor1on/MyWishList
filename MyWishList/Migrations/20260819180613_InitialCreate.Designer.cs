@@ -11,7 +11,7 @@ using MyWishList.API.Infrastructure;
 namespace MyWishList.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260808174734_InitialCreate")]
+    [Migration("20260819180613_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace MyWishList.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.18");
 
-            modelBuilder.Entity("MyWishList.API.Domain.Entities.Wish", b =>
+            modelBuilder.Entity("MyWishList.Shared.Models.Goal", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,12 +45,9 @@ namespace MyWishList.API.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Wishes");
+                    b.ToTable("Goals");
                 });
 #pragma warning restore 612, 618
         }

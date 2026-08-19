@@ -1,6 +1,6 @@
 ﻿namespace MyWishList.Shared.Enums
 {
-    public enum WishStatus
+    public enum GoalStatus
     {
         NotStarted,
         InProgress,

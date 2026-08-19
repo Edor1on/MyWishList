@@ -7,13 +7,13 @@ namespace MyWishList.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class WishesController : ControllerBase
+    public class GoalsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
         // Dependency Injection (DI) в дії: 
         // ASP.NET сам передає нам готове підключення до бази даних.
-        public WishesController(AppDbContext context)
+        public GoalsController(AppDbContext context)
         {
             _context = context;
         }
@@ -21,34 +21,34 @@ namespace MyWishList.API.Controllers
         // GET: api/wishes
         // Метод для отримання всього списку бажань
         [HttpGet]
-        public async Task<IActionResult> GetWishes()
+        public async Task<IActionResult> GetGoals()
         {
-            var wishes = await _context.Wishes.ToListAsync();
-            return Ok(wishes);
+            var goals = await _context.Goals.ToListAsync();
+            return Ok(goals);
         }
 
-        // POST: api/wishes
+        // POST: api/goals
         // Метод для створення нового бажання
         [HttpPost]
-        public async Task<IActionResult> CreateWish(Wish wish)
+        public async Task<IActionResult> CreateGoal(Goal goal)
         {
-            _context.Wishes.Add(wish);
+            _context.Goals.Add(goal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetWishes), new { id = wish.Id }, wish);
+            return CreatedAtAction(nameof(GetGoals), new { id = goal.Id }, goal);
         }
 
         // PUT: api/wishes/5
         // Метод для оновлення існуючого бажання
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateWish(Guid id, Wish updatedWish)
+        public async Task<IActionResult> UpdateGoals(Guid id, Goal updatedGoal)
         {
-            if (id != updatedWish.Id)
+            if (id != updatedGoal.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(updatedWish).State = EntityState.Modified;
+            _context.Entry(updatedGoal).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace MyWishList.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Wishes.Any(e => e.Id == id))
+                if (!_context.Goals.Any(e => e.Id == id))
                 {
                     return NotFound();
                 }
@@ -70,15 +70,15 @@ namespace MyWishList.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteWish(Guid id)
+        public async Task<IActionResult> DeleteGoal(Guid id)
         {
-            var wish = await _context.Wishes.FindAsync(id);
-            if (wish == null)
+            var goal = await _context.Goals.FindAsync(id);
+            if (goal == null)
             {
                 return NotFound();
             }
 
-            _context.Wishes.Remove(wish);
+            _context.Goals.Remove(goal);
             await _context.SaveChangesAsync();
 
             return NoContent();

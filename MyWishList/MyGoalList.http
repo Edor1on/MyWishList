@@ -3,17 +3,16 @@
 
 
 ### Отримати всі бажання (Читання)
-GET {{API_HostAddress}}/api/wishes
+GET {{API_HostAddress}}/api/goals
 Accept: application/json
 
 
 ### Створити нове бажання (Створення)
-POST {{API_HostAddress}}/api/wishes
+POST {{API_HostAddress}}/api/goals
 Content-Type: application/json
 
 
 {
-  "userId": 1,
   "name": "Стати крутим .NET інженером!",
   "description": "Закінчити мій перший full-stack додаток",
   "status": 0

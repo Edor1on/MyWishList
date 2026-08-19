@@ -8,6 +8,6 @@ namespace MyWishList.API.Infrastructure
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<Wish> Wishes { get; set; }
+        public DbSet<Goal> Goals { get; set; }
     }
 }

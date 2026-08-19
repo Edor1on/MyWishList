@@ -7,15 +7,15 @@ using MyWishList.Shared.Enums;
 
 namespace MyWishList.Shared.Models
 {
-    public class Wish
+    public class Goal
     {
         public Guid Id { get; init; } = Guid.NewGuid();
-        public int UserId { get; set; }
 
         public required string Name { get; set; }
         public string? Description { get; set; }
 
-        public WishStatus Status { get; set; } = WishStatus.NotStarted;
+        public GoalStatus Status { get; set; } = GoalStatus.NotStarted;
+        public double ProgressPercentage { get; set; } = 0;
 
         public string? Impression { get; set; }
 

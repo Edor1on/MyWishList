@@ -12,11 +12,10 @@ namespace MyWishList.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Wishes",
+                name: "Goals",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
@@ -26,7 +25,7 @@ namespace MyWishList.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wishes", x => x.Id);
+                    table.PrimaryKey("PK_Goals", x => x.Id);
                 });
         }
 
@@ -34,7 +33,7 @@ namespace MyWishList.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Wishes");
+                name: "Goals");
         }
     }
 }
